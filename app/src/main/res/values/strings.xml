@@ -1,0 +1,8 @@
+<resources>
+<string name="app_name">ClassTracker</string>
+    <string-array name="roles_array">
+        <item>Seleccionar</item>
+        <item>Profesor</item>
+        <item>Estudiante</item>
+    </string-array>
+</resources>
