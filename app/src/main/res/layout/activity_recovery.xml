@@ -26,7 +26,7 @@
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="4"
-        android:text="Recuepra Tus Datos"
+        android:text="Recupera Tus Datos"
         android:textColor="#f4d434"
         android:textSize="40sp"
         tools:layout_editor_absoluteX="53dp"

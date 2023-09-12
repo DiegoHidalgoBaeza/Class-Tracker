@@ -1,5 +1,6 @@
 package com.example.classtracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,6 +21,17 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        Button backButton = findViewById(R.id.buttonback);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         editTextName = findViewById(R.id.Register_Name);
         editTextLastName = findViewById(R.id.Register_LastName);
         editTextID = findViewById(R.id.Register_ID);
@@ -28,22 +40,22 @@ public class RegisterActivity extends AppCompatActivity {
         spinnerRole = findViewById(R.id.spinnerRole); // Asociar con el Spinner en el XML
         buttonRegistrar = findViewById(R.id.Register_Registrar);
 
-        // Configurar opciones del Spinner
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.roles_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerRole.setAdapter(adapter);
 
-        // Manejar la selección del Spinner
+
         spinnerRole.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String selectedRole = parentView.getItemAtPosition(position).toString();
-                // Puedes usar la variable 'selectedRole' para saber si es "Profesor" o "Estudiante"
+
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                // No se ha seleccionado nada
+
             }
         });
 
@@ -58,11 +70,8 @@ public class RegisterActivity extends AppCompatActivity {
                 String institution = editTextInstitution.getText().toString();
                 String selectedRole = spinnerRole.getSelectedItem().toString();
 
-                // Luego, puedes registrar al usuario según los datos recopilados
-                // ...
             }
         });
 
-        // Resto del código de configuración y manejo de botones aquí...
     }
 }
