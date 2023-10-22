@@ -8,10 +8,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.classtracker.db.User;
+import com.example.classtracker.db.UserRepository;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText editTextUsername, editTextPassword;
+    private EditText editTextEmailOrUsername, editTextPassword;
     private Button buttonLogin;
 
     @Override
@@ -19,27 +21,16 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        editTextUsername = findViewById(R.id.editTextUsername);
+        editTextEmailOrUsername = findViewById(R.id.editTextEmailOrUsername);
         editTextPassword = findViewById(R.id.editTextPassword);
         buttonLogin = findViewById(R.id.buttonLogin);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = editTextUsername.getText().toString();
+                String emailOrUsername = editTextEmailOrUsername.getText().toString();
                 String password = editTextPassword.getText().toString();
-
-                loginUser(username, password);
-            }
-        });
-
-        TextView recuperarCuentaTextView = findViewById(R.id.recuperar_cuenta);
-        recuperarCuentaTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Redirige a la actividad RecoveryActivity al hacer clic en "Recuperar Cuenta"
-                Intent intent = new Intent(LoginActivity.this, RecoveryActivity.class);
-                startActivity(intent);
+                loginUser(emailOrUsername, password);
             }
         });
 
@@ -54,22 +45,38 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void loginUser(String username, String password) {
-        Intent intent = null;
+    private void loginUser(String emailOrUsername, String password) {
+        UserRepository userRepository = new UserRepository(this);
+        userRepository.open();
 
-        if (username.equals("profesor") && password.equals("profesor")) {
-            // Credenciales de administrador, redirige a VistaProfesor
-            intent = new Intent(LoginActivity.this, VistaProfesorActivity.class);
-        } else if (username.equals("alumno") && password.equals("alumno")) {
-            // Credenciales de alumno, redirige a VistaAlumno
-            intent = new Intent(LoginActivity.this, VistaAlumnoActivity.class);
-        }
+        User user = userRepository.findUserByEmailOrUsernameAndPassword(emailOrUsername, password);
 
-        if (intent != null) {
-            startActivity(intent);
-            finish(); // Cierra la actividad de inicio de sesión para que el usuario no pueda volver atrás con el botón Atrás
+        Intent intent = null; // Declarar intent inicializado como null
+
+        if (user != null) {
+            String userRole = user.getRole();
+
+            if ("Profesor".equals(userRole)) {
+                intent = new Intent(LoginActivity.this, VistaProfesorActivity.class);
+            } else if ("Estudiante".equals(userRole)) {
+                intent = new Intent(LoginActivity.this, VistaAlumnoActivity.class);
+            } else {
+                // Manejar otros roles si es necesario
+                // Puedes mostrar un mensaje de error o redirigir a una actividad predeterminada
+                // intent = new Intent(LoginActivity.this, OtraClaseActivity.class);
+            }
+
+            if (intent != null) {
+                startActivity(intent);
+                finish();
+            } else {
+                // Manejar el caso donde intent sigue siendo null
+                Toast.makeText(LoginActivity.this, "Rol no válido", Toast.LENGTH_SHORT).show();
+            }
         } else {
             Toast.makeText(LoginActivity.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
         }
+
+        userRepository.close();
     }
 }

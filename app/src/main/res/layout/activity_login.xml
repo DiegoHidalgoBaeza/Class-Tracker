@@ -28,7 +28,7 @@
             android:shadowDx="0"
             android:shadowDy="0"
             android:shadowRadius="4"
-            android:layout_marginTop="55dp"/>
+            android:layout_marginTop="55dp" />
 
         <ImageView
             android:id="@+id/imageViewLogin"
@@ -42,16 +42,14 @@
             app:layout_constraintHorizontal_bias="0.54"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.133"/>
-
+            app:layout_constraintVertical_bias="0.133" />
 
         <EditText
-            android:id="@+id/editTextUsername"
+            android:id="@+id/editTextEmailOrUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre de usuario"
-            android:fontFamily="@font/bubble_bobble"/>
-
+            android:hint="Correo o Nombre de Usuario"
+            android:fontFamily="@font/bubble_bobble" />
 
         <EditText
             android:id="@+id/editTextPassword"
@@ -59,8 +57,7 @@
             android:layout_height="wrap_content"
             android:hint="Contraseña"
             android:inputType="textPassword"
-            android:fontFamily="@font/bubble_bobble"/>
-
+            android:fontFamily="@font/bubble_bobble" />
 
         <Button
             android:id="@+id/buttonLogin"
@@ -70,7 +67,7 @@
             android:textSize="20sp"
             android:textColor="@color/black"
             android:fontFamily="@font/bubble_bobble"
-            android:background="@drawable/button"/>
+            android:background="@drawable/button" />
 
         <TextView
             android:id="@+id/registrar"
@@ -81,7 +78,7 @@
             android:textColor="@color/black"
             android:layout_centerInParent="true"
             android:fontFamily="@font/bubble_bobble"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp" />
 
         <TextView
             android:id="@+id/recuperar_cuenta"
@@ -92,7 +89,7 @@
             android:textColor="@color/black"
             android:layout_centerInParent="true"
             android:fontFamily="@font/bubble_bobble"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp" />
 
     </LinearLayout>
 
