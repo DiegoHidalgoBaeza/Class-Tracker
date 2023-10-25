@@ -32,13 +32,24 @@
 
         <VideoView
             android:id="@+id/tuto"
-            android:layout_width="384dp"
-            android:layout_height="504dp"
+            android:layout_width="360dp"
+            android:layout_height="483dp"
             android:layout_marginTop="22dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.592"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonVolver"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Volver"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bubble_bobble"
+            android:background="@drawable/button2"
+            android:layout_marginTop="20dp"/>
 
     </LinearLayout>
 

@@ -93,6 +93,18 @@
             android:textColor="@color/black"
             android:textSize="15sp" />
 
+        <TextView
+            android:id="@+id/textViewAdmin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/bubble_bobble"
+            android:text="Admin"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:clickable="true"/>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

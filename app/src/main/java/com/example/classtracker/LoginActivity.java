@@ -44,6 +44,17 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // Agrega el TextView "Admin" y su OnClickListener
+        TextView adminTextView = findViewById(R.id.textViewAdmin);
+        adminTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Redirige a la actividad AdminActivity al hacer clic en "Admin"
+                Intent adminIntent = new Intent(LoginActivity.this, AdminActivity.class);
+                startActivity(adminIntent);
+            }
+        });
     }
 
     private void loginUser(String emailOrUsername, String password) {
