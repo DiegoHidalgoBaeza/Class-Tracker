@@ -11,7 +11,7 @@ import android.widget.Toast;
 public class VistaProfesorActivity extends AppCompatActivity {
 
     private ImageView imageView;
-    private Button button1, button2, button3, button4, btnMap;
+    private Button button1, button2, button3, button4, button5, btnMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,7 @@ public class VistaProfesorActivity extends AppCompatActivity {
         button2 = findViewById(R.id.button2);
         button3 = findViewById(R.id.button3);
         button4 = findViewById(R.id.button4);
+        button5 = findViewById(R.id.button5);
         btnMap = findViewById(R.id.btnMap);
         // Configura un listener para el botón 1
         button1.setOnClickListener(new View.OnClickListener() {
@@ -80,5 +81,19 @@ public class VistaProfesorActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Acción a realizar cuando se haga clic en el botón "Cerrar Sesión"
+                // Aquí iniciamos la actividad LoginActivity
+                Intent intent = new Intent(VistaProfesorActivity.this, TutorialActivity.class);
+                startActivity(intent);
+
+                // Cerramos la actividad actual (opcional)
+                finish();
+            }
+        });
+
     }
 }
