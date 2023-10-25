@@ -2,6 +2,7 @@ package com.example.classtracker;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,28 +52,38 @@ public class LoginActivity extends AppCompatActivity {
 
         User user = userRepository.findUserByEmailOrUsernameAndPassword(emailOrUsername, password);
 
-        Intent intent = null; // Declarar intent inicializado como null
-
         if (user != null) {
-            String userRole = user.getRole();
+            // Iniciar la actividad Async para mostrar "Cargando..."
+            Intent loadingIntent = new Intent(LoginActivity.this, AsyncActivity.class);
+            startActivity(loadingIntent);
 
-            if ("Profesor".equals(userRole)) {
-                intent = new Intent(LoginActivity.this, VistaProfesorActivity.class);
-            } else if ("Estudiante".equals(userRole)) {
-                intent = new Intent(LoginActivity.this, VistaAlumnoActivity.class);
-            } else {
-                // Manejar otros roles si es necesario
-                // Puedes mostrar un mensaje de error o redirigir a una actividad predeterminada
-                // intent = new Intent(LoginActivity.this, OtraClaseActivity.class);
-            }
+            // Esperar un tiempo breve (por ejemplo, 2 segundos) antes de redirigir
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // Determinar la actividad de destino según el rol del usuario
+                    Intent intent = null;
 
-            if (intent != null) {
-                startActivity(intent);
-                finish();
-            } else {
-                // Manejar el caso donde intent sigue siendo null
-                Toast.makeText(LoginActivity.this, "Rol no válido", Toast.LENGTH_SHORT).show();
-            }
+                    if ("Profesor".equals(user.getRole())) {
+                        intent = new Intent(LoginActivity.this, VistaProfesorActivity.class);
+                    } else if ("Estudiante".equals(user.getRole())) {
+                        intent = new Intent(LoginActivity.this, VistaAlumnoActivity.class);
+                    } else {
+                        // Manejar otros roles si es necesario
+                        // Puedes mostrar un mensaje de error o redirigir a una actividad predeterminada
+                        // intent = new Intent(LoginActivity.this, OtraClaseActivity.class);
+                    }
+
+                    if (intent != null) {
+                        startActivity(intent);
+                        finish();  // Cerrar LoginActivity
+                    } else {
+                        // Manejar el caso donde intent sigue siendo null
+                        Toast.makeText(LoginActivity.this, "Rol no válido", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }, 2000); // Tiempo de espera en milisegundos (2 segundos)
         } else {
             Toast.makeText(LoginActivity.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
         }
