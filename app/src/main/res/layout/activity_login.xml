@@ -10,33 +10,35 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:gravity="top|center"
+        android:orientation="vertical"
         android:padding="15dp"
-        tools:context=".LoginActivity">
+        tools:context=".LoginActivity"
+        tools:layout_editor_absoluteX="202dp"
+        tools:layout_editor_absoluteY="297dp">
 
         <TextView
             android:id="@+id/textViewTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ClassTracker"
-            android:textSize="40sp"
-            android:textColor="#f4d434"
             android:layout_centerInParent="true"
+            android:layout_marginTop="55dp"
             android:fontFamily="@font/bubble_bobble"
             android:shadowColor="@color/black"
             android:shadowDx="0"
             android:shadowDy="0"
             android:shadowRadius="4"
-            android:layout_marginTop="55dp" />
+            android:text="ClassTracker"
+            android:textColor="#f4d434"
+            android:textSize="40sp" />
 
         <ImageView
             android:id="@+id/imageViewLogin"
             android:layout_width="200dp"
             android:layout_height="200dp"
+            android:layout_marginBottom="25dp"
             android:contentDescription="Logo Login"
             android:src="@drawable/userlogin"
-            android:layout_marginBottom="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.54"
@@ -48,48 +50,48 @@
             android:id="@+id/editTextEmailOrUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Correo o Nombre de Usuario"
-            android:fontFamily="@font/bubble_bobble" />
+            android:fontFamily="@font/bubble_bobble"
+            android:hint="Correo o Nombre de Usuario" />
 
         <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/bubble_bobble"
             android:hint="Contraseña"
-            android:inputType="textPassword"
-            android:fontFamily="@font/bubble_bobble" />
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Iniciar sesión"
-            android:textSize="20sp"
-            android:textColor="@color/black"
+            android:background="@drawable/button"
             android:fontFamily="@font/bubble_bobble"
-            android:background="@drawable/button" />
+            android:text="Iniciar sesión"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/registrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Registrar"
-            android:textSize="15sp"
-            android:textColor="@color/black"
             android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/bubble_bobble"
-            android:layout_marginTop="20dp" />
+            android:text="Registrar"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/recuperar_cuenta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Recuperar Cuenta"
-            android:textSize="15sp"
-            android:textColor="@color/black"
             android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/bubble_bobble"
-            android:layout_marginTop="10dp" />
+            android:text="Recuperar Cuenta"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
 
     </LinearLayout>
 
