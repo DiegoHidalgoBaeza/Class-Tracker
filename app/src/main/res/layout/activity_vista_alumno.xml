@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/fondo"
-    android:gravity="top|center"
     android:padding="15dp">
+
+    <ImageView
+        android:id="@+id/settings"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/settings"
+        android:contentDescription="settings icon"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp" />
 
     <ImageView
         android:id="@+id/imageViewAlumno"
@@ -13,7 +22,9 @@
         android:layout_height="200dp"
         android:src="@drawable/usuario2"
         android:contentDescription="Imagen de un usuario"
-        android:layout_marginTop="55dp"/>
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/settings"
+        android:layout_marginTop="10dp" />
 
     <Button
         android:id="@+id/button1Alumno"
@@ -24,7 +35,9 @@
         android:textColor="@color/black"
         android:fontFamily="@font/bubble_bobble"
         android:background="@drawable/button"
-        android:layout_marginTop="20dp"/>
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/imageViewAlumno"
+        android:layout_marginTop="20dp" />
 
     <Button
         android:id="@+id/button2Alumno"
@@ -35,7 +48,9 @@
         android:textColor="@color/black"
         android:fontFamily="@font/bubble_bobble"
         android:background="@drawable/button"
-        android:layout_marginTop="20dp"/>
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/button1Alumno"
+        android:layout_marginTop="20dp" />
 
     <Button
         android:id="@+id/button3Alumno"
@@ -46,7 +61,9 @@
         android:textColor="@color/black"
         android:fontFamily="@font/bubble_bobble"
         android:background="@drawable/button"
-        android:layout_marginTop="20dp"/>
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/button2Alumno"
+        android:layout_marginTop="20dp" />
 
     <Button
         android:id="@+id/button5Alumno"
@@ -57,6 +74,8 @@
         android:textColor="@color/black"
         android:fontFamily="@font/bubble_bobble"
         android:background="@drawable/button2"
-        android:layout_marginTop="20dp"/>
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/button3Alumno"
+        android:layout_marginTop="20dp" />
 
-</LinearLayout>
+</RelativeLayout>

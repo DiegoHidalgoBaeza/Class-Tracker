@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/fondo"
-    android:gravity="top|center"
     android:padding="15dp">
 
+    <!-- Configuración en la esquina superior derecha -->
+    <ImageView
+        android:id="@+id/settings"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/settings"
+        android:contentDescription="settings icon"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp" />
+
+    <!-- Imagen de usuario -->
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="123dp"
-        android:layout_height="113dp"
-        android:layout_marginTop="55dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:contentDescription="Imagen de un usuario"
-        android:src="@drawable/usuario" />
+        android:src="@drawable/usuario"
+        android:layout_below="@id/settings"
+        android:layout_centerHorizontal="true" />
 
+    <!-- Botón 1 (Registrar Alumno) -->
     <Button
         android:id="@+id/button1"
         android:layout_width="match_parent"
@@ -26,8 +37,11 @@
         android:textColor="@color/black"
         android:fontFamily="@font/bubble_bobble"
         android:background="@drawable/button"
-        android:layout_marginTop="20dp"/>
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/imageView"
+        android:layout_marginTop="20dp" />
 
+    <!-- Botón 2 (Generar Código) -->
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
@@ -37,19 +51,11 @@
         android:textColor="@color/black"
         android:fontFamily="@font/bubble_bobble"
         android:background="@drawable/button"
-        android:layout_marginTop="20dp"/>
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/button1"
+        android:layout_marginTop="20dp" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="Crear Cuestionario"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/bubble_bobble"
-        android:background="@drawable/button"
-        android:layout_marginTop="20dp"/>
-
+    <!-- Botón 4 (Mapa) -->
     <Button
         android:id="@+id/btnMap"
         android:layout_width="match_parent"
@@ -59,8 +65,11 @@
         android:textColor="@color/black"
         android:fontFamily="@font/bubble_bobble"
         android:background="@drawable/button"
-        android:layout_marginTop="20dp"/>
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/button2"
+        android:layout_marginTop="20dp" />
 
+    <!-- Botón 5 (Ayuda) -->
     <Button
         android:id="@+id/button5"
         android:layout_width="match_parent"
@@ -70,19 +79,22 @@
         android:textColor="@color/black"
         android:fontFamily="@font/bubble_bobble"
         android:background="@drawable/button"
-        android:layout_marginTop="20dp"/>
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/btnMap"
+        android:layout_marginTop="20dp" />
 
-
+    <!-- Botón 6 (Cerrar Sesión) -->
     <Button
         android:id="@+id/button4"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/button2"
-        android:fontFamily="@font/bubble_bobble"
         android:text="Cerrar Sesion"
+        android:textSize="20sp"
         android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:fontFamily="@font/bubble_bobble"
+        android:background="@drawable/button2"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/button5"
+        android:layout_marginTop="20dp" />
 
-
-</LinearLayout>
+</RelativeLayout>

@@ -1,6 +1,7 @@
 package com.example.classtracker;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -39,18 +40,15 @@ public class LoginActivity extends AppCompatActivity {
         registrarTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Redirige a la actividad RegisterActivity al hacer clic en "Registrar"
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
         });
 
-        // Agrega el TextView "Admin" y su OnClickListener
         TextView adminTextView = findViewById(R.id.textViewAdmin);
         adminTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Redirige a la actividad AdminActivity al hacer clic en "Admin"
                 Intent adminIntent = new Intent(LoginActivity.this, AdminActivity.class);
                 startActivity(adminIntent);
             }
@@ -64,16 +62,18 @@ public class LoginActivity extends AppCompatActivity {
         User user = userRepository.findUserByEmailOrUsernameAndPassword(emailOrUsername, password);
 
         if (user != null) {
-            // Iniciar la actividad Async para mostrar "Cargando..."
+            SharedPreferences preferences = getSharedPreferences("UserData", MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("userEmail", emailOrUsername);
+            editor.apply();
+
             Intent loadingIntent = new Intent(LoginActivity.this, AsyncActivity.class);
             startActivity(loadingIntent);
 
-            // Esperar un tiempo breve (por ejemplo, 2 segundos) antes de redirigir
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    // Determinar la actividad de destino según el rol del usuario
                     Intent intent = null;
 
                     if ("Profesor".equals(user.getRole())) {
@@ -81,20 +81,17 @@ public class LoginActivity extends AppCompatActivity {
                     } else if ("Estudiante".equals(user.getRole())) {
                         intent = new Intent(LoginActivity.this, VistaAlumnoActivity.class);
                     } else {
-                        // Manejar otros roles si es necesario
-                        // Puedes mostrar un mensaje de error o redirigir a una actividad predeterminada
-                        // intent = new Intent(LoginActivity.this, OtraClaseActivity.class);
+                        Toast.makeText(LoginActivity.this, "Rol no válido", Toast.LENGTH_SHORT).show();
                     }
 
                     if (intent != null) {
                         startActivity(intent);
-                        finish();  // Cerrar LoginActivity
+                        finish();
                     } else {
-                        // Manejar el caso donde intent sigue siendo null
                         Toast.makeText(LoginActivity.this, "Rol no válido", Toast.LENGTH_SHORT).show();
                     }
                 }
-            }, 2000); // Tiempo de espera en milisegundos (2 segundos)
+            }, 2000);
         } else {
             Toast.makeText(LoginActivity.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
         }

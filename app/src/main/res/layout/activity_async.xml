@@ -23,13 +23,14 @@
             android:layout_height="200dp"
             android:layout_marginBottom="25dp"
             android:contentDescription="Logo Login"
-            android:src="@drawable/complet"
+            android:src="@drawable/complet_gif"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.54"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.133" />
+
 
         <TextView
             android:id="@+id/textView"

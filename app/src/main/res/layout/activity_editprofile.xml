@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/fondo"
+    android:gravity="top|center"
+    android:padding="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp">
+
+        <!-- Campo para editar el nombre -->
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:inputType="textPersonName"
+            android:padding="8dp"
+            android:fontFamily="@font/bubble_bobble"/>
+
+        <!-- Campo para editar el apellido -->
+        <EditText
+            android:id="@+id/editTextLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Apellido"
+            android:inputType="textPersonName"
+            android:padding="8dp"
+            android:fontFamily="@font/bubble_bobble"/>
+
+        <!-- Campo para editar el correo electrónico -->
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Correo Electrónico"
+            android:inputType="textEmailAddress"
+            android:padding="8dp"
+            android:fontFamily="@font/bubble_bobble"/>
+
+        <!-- Campo para editar la institución -->
+        <EditText
+            android:id="@+id/editTextInstitution"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Institución"
+            android:inputType="text"
+            android:padding="8dp"
+            android:fontFamily="@font/bubble_bobble"/>
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:visibility="gone"
+            android:fontFamily="@font/bubble_bobble"/>
+
+
+        <!-- Campo para editar la contraseña actual -->
+        <EditText
+            android:id="@+id/editTextCurrentPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contraseña Actual"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:fontFamily="@font/bubble_bobble"/>
+
+        <!-- Campo para editar la contraseña nueva -->
+        <EditText
+            android:id="@+id/editTextNewPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nueva Contraseña"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:fontFamily="@font/bubble_bobble"/>
+
+        <!-- Campo para verificar la contraseña nueva -->
+        <EditText
+            android:id="@+id/editTextConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirmar Nueva Contraseña"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:fontFamily="@font/bubble_bobble"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/buttonChangePassword"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/black"
+                android:text="Cambiar Contraseña"
+                android:padding="8dp"
+                android:background="@drawable/button"
+                android:fontFamily="@font/bubble_bobble"
+                android:layout_weight="1"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"/>
+
+            <Button
+                android:id="@+id/buttonSaveData"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/black"
+                android:text="Cambiar Datos"
+                android:padding="8dp"
+                android:background="@drawable/button"
+                android:fontFamily="@font/bubble_bobble"
+                android:layout_weight="1"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonBack"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textColor="@color/black"
+            android:text="Volver"
+            android:padding="8dp"
+            android:background="@drawable/button2"
+            android:fontFamily="@font/bubble_bobble"
+            android:layout_marginTop="20dp"/>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

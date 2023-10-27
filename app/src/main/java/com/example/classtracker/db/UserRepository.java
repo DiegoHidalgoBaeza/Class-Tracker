@@ -1,5 +1,6 @@
 package com.example.classtracker.db;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -40,7 +41,7 @@ public class UserRepository {
         Cursor cursor = database.rawQuery(query, new String[]{emailOrUsername, emailOrUsername, password});
 
         if (cursor != null && cursor.moveToFirst()) {
-            User user = new User(
+            @SuppressLint("Range") User user = new User(
                     cursor.getString(cursor.getColumnIndex("name")),
                     cursor.getString(cursor.getColumnIndex("lastName")),
                     cursor.getString(cursor.getColumnIndex("rut")),
@@ -56,6 +57,7 @@ public class UserRepository {
         return null;
     }
 
+    @SuppressLint("Range")
     public User findUserByRut(String rut) {
         User user = null;
         String query = "SELECT * FROM users WHERE rut = ?";
@@ -90,7 +92,50 @@ public class UserRepository {
         return database.update("users", values, "rut = ?", new String[]{user.getRut()});
     }
 
+
     public int deleteUserByRut(String rut) {
         return database.delete("users", "rut = ?", new String[]{rut});
     }
+
+    @SuppressLint("Range")
+    public User findUserByEmail(String email) {
+        User user = null;
+        String query = "SELECT * FROM users WHERE email = ?";
+
+        Cursor cursor = database.rawQuery(query, new String[]{email});
+
+        if (cursor != null && cursor.moveToFirst()) {
+            user = new User(
+                    cursor.getString(cursor.getColumnIndex("name")),
+                    cursor.getString(cursor.getColumnIndex("lastName")),
+                    cursor.getString(cursor.getColumnIndex("rut")),
+                    cursor.getString(cursor.getColumnIndex("email")),
+                    cursor.getString(cursor.getColumnIndex("institution")),
+                    cursor.getString(cursor.getColumnIndex("password")),
+                    cursor.getString(cursor.getColumnIndex("role"))
+            );
+            cursor.close();
+        }
+
+        return user;
+
+    }
+
+    public int updateUserProfileData(String email, String name, String lastName, String institution) {
+        ContentValues values = new ContentValues();
+        values.put("name", name);
+        values.put("lastName", lastName);
+        values.put("institution", institution);
+
+        return database.update("users", values, "email = ?", new String[]{email});
+    }
+
+    public int changeUserPassword(String email, String newPassword) {
+        ContentValues values = new ContentValues();
+        values.put("password", newPassword);
+
+        return database.update("users", values, "email = ?", new String[]{email});
+    }
+
+
 }

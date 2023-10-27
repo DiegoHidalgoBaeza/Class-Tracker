@@ -13,6 +13,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCiz4VGi-BkpD37LYXxIXO-Tpve3KeI50Q"
+            android:icon="@mipmap/ic_launcher"
             >
         </meta-data>
 
@@ -77,6 +78,11 @@
 
         <activity
             android:name=".DeleteUserActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".EditProfileActivity"
             android:exported="true">
         </activity>
 
