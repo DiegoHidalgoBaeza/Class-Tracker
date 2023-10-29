@@ -149,5 +149,12 @@ public class UserRepository {
         return database.update("users", values, "email = ?", new String[]{email});
     }
 
+    public int updateProfileImage(String email, byte[] profileImage) {
+        ContentValues values = new ContentValues();
+        values.put("profileimage", profileImage);
+        return database.update("users", values, "email = ?", new String[]{email});
+    }
+
+
 
 }

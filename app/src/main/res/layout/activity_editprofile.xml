@@ -23,6 +23,18 @@
             android:src="@drawable/defaultimage"
             android:contentDescription="Imagen de perfil" />
 
+        <!-- Button to change profile image -->
+        <Button
+            android:id="@+id/buttonChangeImage"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Cambiar Imagen de Perfil"
+            android:padding="8dp"
+            android:background="@drawable/button"
+            android:fontFamily="@font/bubble_bobble"
+            android:layout_marginTop="20dp"/>
+
+
         <!-- Campo para editar el nombre -->
         <EditText
             android:id="@+id/editTextName"

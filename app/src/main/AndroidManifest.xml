@@ -82,7 +82,7 @@
         </activity>
 
         <activity
-            android:name=".EditProfileActivity"
+            android:name=".EditProfileProfesorActivity"
             android:exported="true">
         </activity>
 

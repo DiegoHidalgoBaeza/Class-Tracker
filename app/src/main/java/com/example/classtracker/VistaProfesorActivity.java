@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class VistaProfesorActivity extends AppCompatActivity {
@@ -106,7 +106,7 @@ public class VistaProfesorActivity extends AppCompatActivity {
                     public boolean onMenuItemClick(MenuItem item) {
                         if (item.getItemId() == R.id.menu_edit_profile) {
                             // Acción a realizar cuando se selecciona "Editar Perfil"
-                            Intent intent = new Intent(VistaProfesorActivity.this, EditProfileActivity.class);
+                            Intent intent = new Intent(VistaProfesorActivity.this, EditProfileProfesorActivity.class);
                             startActivity(intent);
                             return true;
                         }
