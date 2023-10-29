@@ -1,5 +1,8 @@
 package com.example.classtracker.db;
 
+import android.graphics.Bitmap;
+import java.io.ByteArrayOutputStream;
+
 public class User {
     private String name;
     private String lastName;
@@ -8,6 +11,7 @@ public class User {
     private String institution;
     private String password;
     private String role;
+    private byte[] profileImage;
 
     public User(String name, String lastName, String rut, String email, String institution, String password, String role) {
         this.name = name;
@@ -47,5 +51,18 @@ public class User {
         return role;
     }
 
-}
+    public void setProfileImage(Bitmap profileImageBitmap) {
+        // Convierte el Bitmap en un arreglo de bytes
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        profileImageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        this.profileImage = stream.toByteArray();
+    }
 
+    public byte[] getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(byte[] profileImage) {
+        this.profileImage = profileImage;
+    }
+}

@@ -2,10 +2,13 @@ package com.example.classtracker;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.classtracker.db.User;
@@ -16,6 +19,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private EditText editTextName, editTextLastName, editTextEmail, editTextInstitution, editTextPassword,
             editTextCurrentPassword, editTextNewPassword, editTextConfirmPassword;
     private Button buttonSaveData, buttonChangePassword;
+    private ImageView profileImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,7 @@ public class EditProfileActivity extends AppCompatActivity {
         editTextConfirmPassword = findViewById(R.id.editTextConfirmPassword);
         buttonSaveData = findViewById(R.id.buttonSaveData);
         buttonChangePassword = findViewById(R.id.buttonChangePassword);
+        profileImageView = findViewById(R.id.profileImageView); // ImageView para mostrar la imagen de perfil
 
         SharedPreferences preferences = getSharedPreferences("UserData", MODE_PRIVATE);
         String userEmail = preferences.getString("userEmail", "");
@@ -48,6 +53,13 @@ public class EditProfileActivity extends AppCompatActivity {
             editTextLastName.setText(user.getLastName());
             editTextInstitution.setText(user.getInstitution());
             editTextPassword.setText(user.getPassword()); // Establecer la contraseña actual
+
+            // Mostrar la imagen de perfil si está disponible
+            if (user.getProfileImage() != null) {
+                byte[] imageBytes = user.getProfileImage();
+                Bitmap profileBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                profileImageView.setImageBitmap(profileBitmap);
+            }
         } else {
             Toast.makeText(this, "Usuario no encontrado en la base de datos", Toast.LENGTH_SHORT).show();
         }
@@ -65,7 +77,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
         buttonSaveData.setOnClickListener(new View.OnClickListener() {
             @Override

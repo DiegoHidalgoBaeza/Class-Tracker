@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class UserDatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "Classtracker.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2; // Aumenta la versión de la base de datos
 
     public UserDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -22,7 +22,8 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
                 "email TEXT," +
                 "institution TEXT," +
                 "password TEXT," +
-                "role TEXT)";
+                "role TEXT," +
+                "profileimage TEXT)"; // Agrega el campo profileimage
         db.execSQL(createUserTableQuery);
     }
 

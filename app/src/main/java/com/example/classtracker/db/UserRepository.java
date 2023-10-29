@@ -6,6 +6,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 public class UserRepository {
     private SQLiteDatabase database;
@@ -23,7 +25,7 @@ public class UserRepository {
         dbHelper.close();
     }
 
-    public long insertUser(User user) {
+    public long insertUser(User user, byte[] profileImage) {
         ContentValues values = new ContentValues();
         values.put("name", user.getName());
         values.put("lastName", user.getLastName());
@@ -32,6 +34,7 @@ public class UserRepository {
         values.put("institution", user.getInstitution());
         values.put("password", user.getPassword());
         values.put("role", user.getRole());
+        values.put("profileimage", profileImage);
 
         return database.insert("users", null, values);
     }
@@ -105,21 +108,30 @@ public class UserRepository {
         Cursor cursor = database.rawQuery(query, new String[]{email});
 
         if (cursor != null && cursor.moveToFirst()) {
-            user = new User(
-                    cursor.getString(cursor.getColumnIndex("name")),
-                    cursor.getString(cursor.getColumnIndex("lastName")),
-                    cursor.getString(cursor.getColumnIndex("rut")),
-                    cursor.getString(cursor.getColumnIndex("email")),
-                    cursor.getString(cursor.getColumnIndex("institution")),
-                    cursor.getString(cursor.getColumnIndex("password")),
-                    cursor.getString(cursor.getColumnIndex("role"))
-            );
+            // Recuperar los valores de las columnas en la base de datos
+            String name = cursor.getString(cursor.getColumnIndex("name"));
+            String lastName = cursor.getString(cursor.getColumnIndex("lastName"));
+            String rut = cursor.getString(cursor.getColumnIndex("rut"));
+            String institution = cursor.getString(cursor.getColumnIndex("institution"));
+            String password = cursor.getString(cursor.getColumnIndex("password"));
+            String role = cursor.getString(cursor.getColumnIndex("role"));
+            byte[] profileImageBytes = cursor.getBlob(cursor.getColumnIndex("profileimage"));
+
+            // Crear una instancia de User con los valores recuperados
+            user = new User(name, lastName, rut, email, institution, password, role);
+
+            // Asignar la imagen al usuario si hay datos de imagen en la base de datos
+            if (profileImageBytes != null) {
+                Bitmap profileImageBitmap = BitmapFactory.decodeByteArray(profileImageBytes, 0, profileImageBytes.length);
+                user.setProfileImage(profileImageBitmap);
+            }
+
             cursor.close();
         }
 
         return user;
-
     }
+
 
     public int updateUserProfileData(String email, String name, String lastName, String institution) {
         ContentValues values = new ContentValues();

@@ -1,27 +1,33 @@
 package com.example.classtracker;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 
 import com.example.classtracker.db.User;
 import com.example.classtracker.db.UserRepository;
 
-public class RegisterActivity extends AppCompatActivity {
+import java.io.ByteArrayOutputStream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+public class RegisterActivity extends Activity {
     private EditText editTextName, editTextLastName, editTextID, editTextMail, editTextInstitution, editTextPassword, editTextConfirmPassword;
     private Spinner spinnerRole;
     private Button buttonRegistrar;
+    private ImageView profileImageView; // ImageView para mostrar la imagen
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
         editTextConfirmPassword = findViewById(R.id.Register_ConfirmPassword);
         spinnerRole = findViewById(R.id.spinnerRole);
         buttonRegistrar = findViewById(R.id.Register_Registrar);
+        profileImageView = findViewById(R.id.profileImageView); // Asociar ImageView con el layout
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.roles_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -77,10 +84,19 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "El correo no es válido", Toast.LENGTH_SHORT).show();
                 } else {
                     // Contraseñas coinciden y el RUT es válido, continuar con la inserción en la base de datos
+
+                    // Convierte la imagen en un array de bytes
+                    BitmapDrawable bitmapDrawable = (BitmapDrawable) profileImageView.getDrawable();
+                    Bitmap bitmap = bitmapDrawable.getBitmap();
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    byte[] imageBytes = stream.toByteArray();
+
+                    // Crear un objeto User para insertar en la base de datos
                     User user = new User(name, lastName, id, mail, institution, password, selectedRole);
                     UserRepository userRepository = new UserRepository(RegisterActivity.this);
                     userRepository.open();
-                    long result = userRepository.insertUser(user);
+                    long result = userRepository.insertUser(user, imageBytes); // Inserta la imagen junto con los datos del usuario
                     userRepository.close();
 
                     if (result != -1) {
@@ -99,6 +115,8 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
+    // Resto del código para validar RUT y correo electrónico, como lo tenías en tu implementación original
 
     // Método para validar un RUT chileno
     private boolean isValidRut(String rut) {

@@ -14,6 +14,15 @@
         android:gravity="center"
         android:padding="16dp">
 
+        <ImageView
+            android:id="@+id/profileImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/defaultimage"
+            android:contentDescription="Imagen de perfil" />
+
         <!-- Campo para editar el nombre -->
         <EditText
             android:id="@+id/editTextName"
