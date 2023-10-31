@@ -1,4 +1,4 @@
-package com.example.classtracker;
+package com.example.classtracker.alumno;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,15 +16,18 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.classtracker.db.User;
-import com.example.classtracker.db.UserRepository;
+
+import com.example.classtracker.R;
+import com.example.classtracker.database.User;
+import com.example.classtracker.database.UserRepository;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class EditProfileProfesorActivity extends AppCompatActivity {
+
+public class EditProfileAlumnoActivity extends AppCompatActivity {
     private EditText editTextName, editTextLastName, editTextEmail, editTextInstitution, editTextPassword,
             editTextCurrentPassword, editTextNewPassword, editTextConfirmPassword;
     private Button buttonSaveData, buttonChangePassword, buttonChangeImage;
@@ -91,7 +94,7 @@ public class EditProfileProfesorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Crear un Intent para redirigir a VistaProfesorActivity
-                Intent intent = new Intent(EditProfileProfesorActivity.this, VistaProfesorActivity.class);
+                Intent intent = new Intent(EditProfileAlumnoActivity.this, VistaAlumnoActivity.class);
 
                 // Iniciar la actividad VistaProfesorActivity
                 startActivity(intent);
@@ -205,19 +208,19 @@ public class EditProfileProfesorActivity extends AppCompatActivity {
         String institution = editTextInstitution.getText().toString();
 
         if (email.isEmpty() || name.isEmpty() || lastName.isEmpty() || institution.isEmpty()) {
-            Toast.makeText(EditProfileProfesorActivity.this, "Complete todos los campos de datos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditProfileAlumnoActivity.this, "Complete todos los campos de datos", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        UserRepository userRepository = new UserRepository(EditProfileProfesorActivity.this);
+        UserRepository userRepository = new UserRepository(EditProfileAlumnoActivity.this);
         userRepository.open();
 
         int rowsAffected = userRepository.updateUserProfileData(email, name, lastName, institution);
 
         if (rowsAffected > 0) {
-            Toast.makeText(EditProfileProfesorActivity.this, "Datos actualizados exitosamente", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditProfileAlumnoActivity.this, "Datos actualizados exitosamente", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(EditProfileProfesorActivity.this, "No se pudo actualizar los datos del usuario", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditProfileAlumnoActivity.this, "No se pudo actualizar los datos del usuario", Toast.LENGTH_SHORT).show();
         }
 
         userRepository.close();
@@ -230,36 +233,37 @@ public class EditProfileProfesorActivity extends AppCompatActivity {
         String confirmPassword = editTextConfirmPassword.getText().toString();
 
         if (email.isEmpty() || currentPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
-            Toast.makeText(EditProfileProfesorActivity.this, "Complete todos los campos de contraseña", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditProfileAlumnoActivity.this, "Complete todos los campos de contraseña", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!currentPassword.equals(editTextPassword.getText().toString())) {
-            Toast.makeText(EditProfileProfesorActivity.this, "La contraseña actual no coincide", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditProfileAlumnoActivity.this, "La contraseña actual no coincide", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (newPassword.length() < 8) {
-            Toast.makeText(EditProfileProfesorActivity.this, "La nueva contraseña debe tener al menos 8 caracteres", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditProfileAlumnoActivity.this, "La nueva contraseña debe tener al menos 8 caracteres", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (!newPassword.equals(confirmPassword)) {
-            Toast.makeText(EditProfileProfesorActivity.this, "Las contraseñas nuevas no coinciden", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditProfileAlumnoActivity.this, "Las contraseñas nuevas no coinciden", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        UserRepository userRepository = new UserRepository(EditProfileProfesorActivity.this);
+        UserRepository userRepository = new UserRepository(EditProfileAlumnoActivity.this);
         userRepository.open();
 
         int rowsAffected = userRepository.changeUserPassword(email, newPassword);
 
         if (rowsAffected > 0) {
-            Toast.makeText(EditProfileProfesorActivity.this, "Contraseña actualizada exitosamente", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditProfileAlumnoActivity.this, "Contraseña actualizada exitosamente", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(EditProfileProfesorActivity.this, "No se pudo actualizar la contraseña", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditProfileAlumnoActivity.this, "No se pudo actualizar la contraseña", Toast.LENGTH_SHORT).show();
         }
 
         userRepository.close();
     }
 }
+

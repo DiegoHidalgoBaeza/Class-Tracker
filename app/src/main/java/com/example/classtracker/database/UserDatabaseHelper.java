@@ -1,4 +1,4 @@
-package com.example.classtracker.db;
+package com.example.classtracker.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

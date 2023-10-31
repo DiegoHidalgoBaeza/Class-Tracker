@@ -1,4 +1,4 @@
-package com.example.classtracker;
+package com.example.classtracker.alumno;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
+
+import com.example.classtracker.LoginActivity;
+import com.example.classtracker.R;
+import com.example.classtracker.profesor.EditProfileProfesorActivity;
 
 public class VistaAlumnoActivity extends AppCompatActivity {
 

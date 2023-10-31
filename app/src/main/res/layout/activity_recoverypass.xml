@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
-    tools:context=".LoginActivity">
+    tools:context=".RecoveryPassActivity">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +29,7 @@
             android:shadowDx="0"
             android:shadowDy="0"
             android:shadowRadius="4"
-            android:text="ClassTracker"
+            android:text="Recuperar Cuenta"
             android:textColor="#f4d434"
             android:textSize="40sp" />
 
@@ -37,7 +38,7 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_marginBottom="25dp"
-            android:contentDescription="Logo Login"
+            android:contentDescription="Logo Recovery"
             android:src="@drawable/userlogin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,52 +47,39 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.133" />
 
-        <EditText
-            android:id="@+id/editTextEmailOrUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/bubble_bobble"
-            android:hint="Correo o Nombre de Usuario" />
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bubble_bobble"
+        android:textColor="@color/black"
+        android:hint="Correo electrónico"
+        android:layout_marginTop="20dp"
+        android:inputType="textEmailAddress" />
 
-        <EditText
-            android:id="@+id/editTextPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/bubble_bobble"
-            android:hint="Contraseña"
-            android:inputType="textPassword" />
+    <Button
+        android:id="@+id/buttonRecover"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/bubble_bobble"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/editTextEmail"
+        android:text="Recuperar contraseña" />
+
 
         <Button
-            android:id="@+id/buttonLogin"
+            android:id="@+id/buttonVolver"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@drawable/button"
-            android:fontFamily="@font/bubble_bobble"
-            android:text="Iniciar sesión"
+            android:text="Volver"
+            android:textSize="20sp"
             android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/registrar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="20dp"
             android:fontFamily="@font/bubble_bobble"
-            android:text="Registrar"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/recuperar_cuenta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/bubble_bobble"
-            android:text="Recuperar Cuenta"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:background="@drawable/button2"
+            android:layout_marginTop="20dp"/>
 
 
     </LinearLayout>

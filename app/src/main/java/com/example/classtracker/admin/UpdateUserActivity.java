@@ -1,4 +1,4 @@
-package com.example.classtracker;
+package com.example.classtracker.admin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.classtracker.db.User;
-import com.example.classtracker.db.UserRepository;
+
+import com.example.classtracker.R;
+import com.example.classtracker.database.User;
+import com.example.classtracker.database.UserRepository;
 
 public class UpdateUserActivity extends AppCompatActivity {
 

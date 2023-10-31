@@ -27,22 +27,22 @@
         </activity>
 
         <activity
-            android:name=".VistaProfesorActivity"
+            android:name=".profesor.VistaProfesorActivity"
             android:exported="true">
         </activity>
 
         <activity
-            android:name=".VistaAlumnoActivity"
+            android:name=".alumno.VistaAlumnoActivity"
             android:exported="true">
         </activity>
 
         <activity
-            android:name=".GenCodeActivity"
+            android:name=".profesor.GenCodeActivity"
             android:exported="true">
         </activity>
 
         <activity
-            android:name=".RecoveryActivity"
+            android:name=".admin.RecoveryActivity"
             android:exported="true">
         </activity>
 
@@ -51,7 +51,7 @@
             android:exported="true">
         </activity>
 
-        <activity android:name=".MapaActivity"
+        <activity android:name=".profesor.MapaActivity"
             android:exported="true">
 
         </activity>
@@ -62,29 +62,35 @@
         </activity>
 
         <activity
-            android:name=".TutorialActivity"
+            android:name=".profesor.TutorialActivity"
             android:exported="true">
         </activity>
 
         <activity
-            android:name=".AdminActivity"
+            android:name=".admin.AdminActivity"
             android:exported="true">
         </activity>
 
         <activity
-            android:name=".UpdateUserActivity"
+            android:name=".admin.UpdateUserActivity"
             android:exported="true">
         </activity>
 
         <activity
-            android:name=".DeleteUserActivity"
+            android:name=".admin.DeleteUserActivity"
             android:exported="true">
         </activity>
 
         <activity
-            android:name=".EditProfileProfesorActivity"
+            android:name=".profesor.EditProfileProfesorActivity"
             android:exported="true">
         </activity>
+
+        <activity
+            android:name=".RecoveryPassActivity"
+            android:exported="true">
+        </activity>
+
 
     </application>
 

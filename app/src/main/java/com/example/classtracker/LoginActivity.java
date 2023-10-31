@@ -10,8 +10,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.classtracker.db.User;
-import com.example.classtracker.db.UserRepository;
+
+import com.example.classtracker.admin.AdminActivity;
+import com.example.classtracker.alumno.VistaAlumnoActivity;
+import com.example.classtracker.database.User;
+import com.example.classtracker.database.UserRepository;
+import com.example.classtracker.profesor.VistaProfesorActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -45,55 +49,65 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        TextView adminTextView = findViewById(R.id.textViewAdmin);
-        adminTextView.setOnClickListener(new View.OnClickListener() {
+        // Agregar un controlador de clic para el elemento de recuperar contraseña
+        TextView recuperarCuentaTextView = findViewById(R.id.recuperar_cuenta);
+        recuperarCuentaTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent adminIntent = new Intent(LoginActivity.this, AdminActivity.class);
-                startActivity(adminIntent);
+                // Redirigir a RecoveryPassActivity
+                Intent recoveryIntent = new Intent(LoginActivity.this, RecoveryPassActivity.class);
+                startActivity(recoveryIntent);
             }
         });
+
     }
 
     private void loginUser(String emailOrUsername, String password) {
         UserRepository userRepository = new UserRepository(this);
         userRepository.open();
 
-        User user = userRepository.findUserByEmailOrUsernameAndPassword(emailOrUsername, password);
-
-        if (user != null) {
-            SharedPreferences preferences = getSharedPreferences("UserData", MODE_PRIVATE);
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("userEmail", emailOrUsername);
-            editor.apply();
-
-            Intent loadingIntent = new Intent(LoginActivity.this, AsyncActivity.class);
-            startActivity(loadingIntent);
-
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent intent = null;
-
-                    if ("Profesor".equals(user.getRole())) {
-                        intent = new Intent(LoginActivity.this, VistaProfesorActivity.class);
-                    } else if ("Estudiante".equals(user.getRole())) {
-                        intent = new Intent(LoginActivity.this, VistaAlumnoActivity.class);
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Rol no válido", Toast.LENGTH_SHORT).show();
-                    }
-
-                    if (intent != null) {
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Rol no válido", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }, 2000);
+        if ("Admin".equals(emailOrUsername) && "admin".equals(password)) {
+            // Las credenciales son de administrador, redirigir a AdminActivity
+            Intent adminIntent = new Intent(LoginActivity.this, AdminActivity.class);
+            startActivity(adminIntent);
+            finish();
         } else {
-            Toast.makeText(LoginActivity.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
+            User user = userRepository.findUserByEmailOrUsernameAndPassword(emailOrUsername, password);
+
+            if (user != null) {
+                SharedPreferences preferences = getSharedPreferences("UserData", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("userEmail", emailOrUsername);
+                editor.apply();
+
+                Intent loadingIntent = new Intent(LoginActivity.this, AsyncActivity.class);
+                startActivity(loadingIntent);
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = null;
+
+                        if ("Profesor".equals(user.getRole())) {
+                            intent = new Intent(LoginActivity.this, VistaProfesorActivity.class);
+                        } else if ("Estudiante".equals(user.getRole())) {
+                            intent = new Intent(LoginActivity.this, VistaAlumnoActivity.class);
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Rol no válido", Toast.LENGTH_SHORT).show();
+                        }
+
+                        if (intent != null) {
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Rol no válido", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, 2000);
+            } else {
+                Toast.makeText(LoginActivity.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
+            }
         }
 
         userRepository.close();

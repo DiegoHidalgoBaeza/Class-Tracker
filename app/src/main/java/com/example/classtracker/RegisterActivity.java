@@ -14,8 +14,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.classtracker.db.User;
-import com.example.classtracker.db.UserRepository;
+import com.example.classtracker.database.User;
+import com.example.classtracker.database.UserRepository;
 
 import java.io.ByteArrayOutputStream;
 import java.util.regex.Matcher;

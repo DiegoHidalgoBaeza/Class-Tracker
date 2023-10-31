@@ -1,4 +1,4 @@
-package com.example.classtracker;
+package com.example.classtracker.profesor;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.classtracker.LoginActivity;
+import com.example.classtracker.R;
 
 public class VistaProfesorActivity extends AppCompatActivity {
 

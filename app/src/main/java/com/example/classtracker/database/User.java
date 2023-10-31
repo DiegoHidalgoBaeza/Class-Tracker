@@ -1,4 +1,4 @@
-package com.example.classtracker.db;
+package com.example.classtracker.database;
 
 import android.graphics.Bitmap;
 import java.io.ByteArrayOutputStream;

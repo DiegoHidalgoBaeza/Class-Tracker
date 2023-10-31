@@ -1,4 +1,4 @@
-package com.example.classtracker;
+package com.example.classtracker.profesor;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -12,6 +12,8 @@ import android.widget.MediaController;
 import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.classtracker.R;
 
 public class TutorialActivity extends AppCompatActivity {
 

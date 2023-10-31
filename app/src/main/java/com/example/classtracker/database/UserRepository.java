@@ -1,4 +1,4 @@
-package com.example.classtracker.db;
+package com.example.classtracker.database;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -153,6 +153,19 @@ public class UserRepository {
         ContentValues values = new ContentValues();
         values.put("profileimage", profileImage);
         return database.update("users", values, "email = ?", new String[]{email});
+    }
+
+    public boolean doesUserExistByEmail(String email) {
+        String query = "SELECT COUNT(*) FROM users WHERE email = ?";
+        Cursor cursor = database.rawQuery(query, new String[]{email});
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+            int count = cursor.getInt(0);
+            cursor.close();
+            return count > 0;
+        }
+        return false;
     }
 
 

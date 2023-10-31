@@ -1,10 +1,13 @@
-package com.example.classtracker;
+package com.example.classtracker.admin;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.classtracker.LoginActivity;
+import com.example.classtracker.R;
 
 public class RecoveryActivity extends AppCompatActivity {
 
